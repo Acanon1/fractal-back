@@ -3,6 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using fractal_back.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 
@@ -17,9 +21,14 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
         policy => policy
-            .WithOrigins("http://localhost:5173") // <-- correct
+            .WithOrigins("http://localhost:5173")
             .AllowAnyHeader()
             .AllowAnyMethod());
+});
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(8080);
 });
 
 
