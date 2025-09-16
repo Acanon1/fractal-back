@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace fractal_back.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/orders")]
 public class OrdersController : ControllerBase
 {
     private readonly AppDbContext _context;
