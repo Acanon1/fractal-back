@@ -33,6 +33,13 @@ builder.WebHost.ConfigureKestrel(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<AppDbContext>();
+    DbInitializer.Initialize(context);
+}
+
 
 app.UseCors("AllowFrontend");   
 app.UseHttpsRedirection();        
@@ -42,3 +49,6 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.Run();
+
+
+

@@ -38,13 +38,13 @@ public class ProductsController : ControllerBase
         {
             var product = await _context.Products.FindAsync(id);
             if (product == null)
-                return NotFound(new { message = $"Producto {id} no encontrado  " });
+                return NotFound(new { message = $"producto {id} no encontrado  " });
 
             return Ok(product);
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { message = "Fallo en obtener productos", error = ex.Message });
+            return StatusCode(500, new { message = "fallo en obtener productos", error = ex.Message });
         }
     }
 
@@ -76,7 +76,7 @@ public class ProductsController : ControllerBase
         {
             var product = await _context.Products.FindAsync(id);
             if (product == null)
-                return NotFound(new { message = $"Producto {id} en ecnontrado" });
+                return NotFound(new { message = $"Producto {id} no nontrado" });
 
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
@@ -84,7 +84,7 @@ public class ProductsController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { message = "Fallo al intentar eliminar producto", error = ex.Message });
+            return StatusCode(500, new { message = "Fallo al eliminar producto", error = ex.Message });
         }
     }
 
